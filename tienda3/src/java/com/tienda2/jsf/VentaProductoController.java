@@ -1,0 +1,172 @@
+package com.tienda2.jsf;
+
+import com.tienda2.entidades.VentaProducto;
+import com.tienda2.jsf.util.JsfUtil;
+import com.tienda2.jsf.util.JsfUtil.PersistAction;
+import com.tienda2.bean.VentaProductoFacade;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+
+@ManagedBean(name = "ventaProductoController")
+@SessionScoped
+public class VentaProductoController implements Serializable {
+
+    @EJB
+    private com.tienda2.bean.VentaProductoFacade ejbFacade;
+    private List<VentaProducto> items = null;
+    private VentaProducto selected;
+
+    public VentaProductoController() {
+    }
+
+    public VentaProducto getSelected() {
+        return selected;
+    }
+
+    public void setSelected(VentaProducto selected) {
+        this.selected = selected;
+    }
+
+    protected void setEmbeddableKeys() {
+        selected.getVentaProductoPK().setIdProducto(selected.getProducto().getId());
+        selected.getVentaProductoPK().setIdVenta(selected.getVentas().getId());
+    }
+
+    protected void initializeEmbeddableKey() {
+        selected.setVentaProductoPK(new com.tienda2.entidades.VentaProductoPK());
+    }
+
+    private VentaProductoFacade getFacade() {
+        return ejbFacade;
+    }
+
+    public VentaProducto prepareCreate() {
+        selected = new VentaProducto();
+        initializeEmbeddableKey();
+        return selected;
+    }
+
+    public void create() {
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("VentaProductoCreated"));
+        if (!JsfUtil.isValidationFailed()) {
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+    }
+
+    public void update() {
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("VentaProductoUpdated"));
+    }
+
+    public void destroy() {
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("VentaProductoDeleted"));
+        if (!JsfUtil.isValidationFailed()) {
+            selected = null; // Remove selection
+            items = null;    // Invalidate list of items to trigger re-query.
+        }
+    }
+
+    public List<VentaProducto> getItems() {
+        if (items == null) {
+            items = getFacade().findAll();
+        }
+        return items;
+    }
+
+    private void persist(PersistAction persistAction, String successMessage) {
+        if (selected != null) {
+            setEmbeddableKeys();
+            try {
+                if (persistAction != PersistAction.DELETE) {
+                    getFacade().edit(selected);
+                } else {
+                    getFacade().remove(selected);
+                }
+                JsfUtil.addSuccessMessage(successMessage);
+            } catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            }
+        }
+    }
+
+    public List<VentaProducto> getItemsAvailableSelectMany() {
+        return getFacade().findAll();
+    }
+
+    public List<VentaProducto> getItemsAvailableSelectOne() {
+        return getFacade().findAll();
+    }
+
+    @FacesConverter(forClass = VentaProducto.class)
+    public static class VentaProductoControllerConverter implements Converter {
+
+        private static final String SEPARATOR = "#";
+        private static final String SEPARATOR_ESCAPED = "\\#";
+
+        @Override
+        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+            if (value == null || value.length() == 0) {
+                return null;
+            }
+            VentaProductoController controller = (VentaProductoController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "ventaProductoController");
+            return controller.getFacade().find(getKey(value));
+        }
+
+        com.tienda2.entidades.VentaProductoPK getKey(String value) {
+            com.tienda2.entidades.VentaProductoPK key;
+            String values[] = value.split(SEPARATOR_ESCAPED);
+            key = new com.tienda2.entidades.VentaProductoPK();
+            key.setIdVenta(Integer.parseInt(values[0]));
+            key.setIdProducto(Integer.parseInt(values[1]));
+            return key;
+        }
+
+        String getStringKey(com.tienda2.entidades.VentaProductoPK value) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(value.getIdVenta());
+            sb.append(SEPARATOR);
+            sb.append(value.getIdProducto());
+            return sb.toString();
+        }
+
+        @Override
+        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+            if (object == null) {
+                return null;
+            }
+            if (object instanceof VentaProducto) {
+                VentaProducto o = (VentaProducto) object;
+                return getStringKey(o.getVentaProductoPK());
+            } else {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), VentaProducto.class.getName()});
+                return null;
+            }
+        }
+
+    }
+
+}

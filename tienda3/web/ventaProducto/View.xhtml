@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentaProductoViewDlg" widgetVar="VentaProductoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewVentaProductoTitle}">
+            <h:form id="VentaProductoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventaProductoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewVentaProductoLabel_cantidad}"/>
+                        <h:outputText value="#{ventaProductoController.selected.cantidad}" title="#{bundle.ViewVentaProductoTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewVentaProductoLabel_valor}"/>
+                        <h:outputText value="#{ventaProductoController.selected.valor}" title="#{bundle.ViewVentaProductoTitle_valor}"/>
+                        <h:outputText value="#{bundle.ViewVentaProductoLabel_ventas}"/>
+                        <h:outputText value="#{ventaProductoController.selected.ventas}" title="#{bundle.ViewVentaProductoTitle_ventas}"/>
+                        <h:outputText value="#{bundle.ViewVentaProductoLabel_producto}"/>
+                        <h:outputText value="#{ventaProductoController.selected.producto}" title="#{bundle.ViewVentaProductoTitle_producto}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="VentaProductoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
