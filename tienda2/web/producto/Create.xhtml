@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProductoCreateDlg" widgetVar="ProductoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProductoTitle}">
+            <h:form id="ProductoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{productoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProductoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{productoController.selected.id}" title="#{bundle.CreateProductoTitle_id}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateProductoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{productoController.selected.nombre}" title="#{bundle.CreateProductoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateProductoLabel_fechaVenc}" for="fechaVenc" />
+                        <p:calendar id="fechaVenc" pattern="MM/dd/yyyy" value="#{productoController.selected.fechaVenc}" title="#{bundle.EditProductoTitle_fechaVenc}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_fechaVenc}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateProductoLabel_stock}" for="stock" />
+                        <p:inputText id="stock" value="#{productoController.selected.stock}" title="#{bundle.CreateProductoTitle_stock}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_stock}"/>
+                        <p:outputLabel value="#{bundle.CreateProductoLabel_precioVenta}" for="precioVenta" />
+                        <p:inputText id="precioVenta" value="#{productoController.selected.precioVenta}" title="#{bundle.CreateProductoTitle_precioVenta}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_precioVenta}"/>
+                        <p:outputLabel value="#{bundle.CreateProductoLabel_idCategoria}" for="idCategoria" />
+                        <p:selectOneMenu id="idCategoria" value="#{productoController.selected.idCategoria}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_idCategoria}">
+                            <f:selectItems value="#{categoriaController.itemsAvailableSelectOne}"
+                                           var="idCategoriaItem"
+                                           itemValue="#{idCategoriaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProductoLabel_idMarca}" for="idMarca" />
+                        <p:selectOneMenu id="idMarca" value="#{productoController.selected.idMarca}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_idMarca}">
+                            <f:selectItems value="#{marcaController.itemsAvailableSelectOne}"
+                                           var="idMarcaItem"
+                                           itemValue="#{idMarcaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateProductoLabel_idProveedor}" for="idProveedor" />
+                        <p:selectOneMenu id="idProveedor" value="#{productoController.selected.idProveedor}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_idProveedor}">
+                            <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"
+                                           var="idProveedorItem"
+                                           itemValue="#{idProveedorItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{productoController.create}" value="#{bundle.Save}" update="display,:ProductoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProductoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProductoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

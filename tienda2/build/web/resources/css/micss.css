@@ -1,0 +1,129 @@
+body {
+  background: #B2DFDB;
+  font-family: 'Roboto Condensed', sans-serif;
+ 
+}
+
+/* ---------- Estilos para la cabecera ---------- */
+
+#cabecera {
+  border-bottom: 1px solid #999;
+}
+.menu{
+    background: #80CBC4;
+    height: 40px;
+    font-family:  'Roboto Condensed', sans-serif;
+    font-size: 30px;
+    margin-top: 50px;
+}
+.menu label{
+    background: #80CBC4;
+    height: 40px;
+    font-family:  'Roboto Condensed', sans-serif;
+    font-size: 30px;
+}
+.smenu{
+    font-family:  'Roboto Condensed', sans-serif;
+    font-size: 30px; 
+    color: red;
+}
+
+
+label{
+    font-family:  'Roboto Condensed', sans-serif;
+    font-size: 30px;   
+    
+}
+#cabecera_logo {
+  margin: 15px 0 10px 15px;
+  
+}
+
+#cabecera_titulo {
+  font-weight: bold;
+  font-style: italic;
+  font-family: 'arial black', sans-serif;
+  margin: 40px 0 0 0;
+}
+
+#cabecera_titulo h1 {
+  color: #888;
+}
+
+#cabecera_menu {
+  margin: 80px 0 0 0;
+}
+
+#cabecera_menu_items li {
+  margin-right: 15px;
+  float: left;
+  list-style: none;
+}
+
+/* ---------- Estilos para el centro (menu y contenido) ---------- */
+
+#centro_izquierda {
+  margin: 10px 0 0 0;
+}
+
+#centro_contenido {
+  margin: 10px 0 0 0;
+}
+
+/* ---------- Estilos para el pie de pagina ---------- */
+
+#pie {
+  border-top: 1px solid #999;
+}
+
+#pie_texto {
+  text-align: right;
+  margin: 17px 0 0 0;
+  color: #888;
+}
+
+#pie_logo {
+  text-align: left;
+  margin: 10px 0 0 0;
+}
+.titulo{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 60px;
+    color: #fff;    
+}
+//-----
+
+.contenido{
+    background: #fff;
+    height: 300px;
+    width: 50%;
+    margin: 10px auto;
+    
+}
+.panel{
+    background: #4DB6AC;
+    
+}
+.dtable{
+    
+    background: #80CBC4;
+    font-size: 3em;
+}
+.boton{
+    background: red;
+       
+}
+.imagen{
+    width: 150px;
+    width: 150px;    
+        
+}
+
+.imagen2{
+    width: 220px;
+    width: 220px;   
+}
+.table{
+margin: 50px auto;
+margin-left: 200px;
+}

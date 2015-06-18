@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="blueprint/screen.css"/>
+        <h:outputStylesheet library="css" name="micss.css"/>
+        <h:outputStylesheet library="css" name="WebGrid.css"/>
+        <title><h:outputText value="Sistema de control Tienda"/></title>
+    </h:head>
+
+    <h:body>
+        
+       
+
+    <div class="container">
+
+        <div id="cabecera" class="span-24 last">
+            <div class="span-3">
+                <div id="cabecera_logo"> <h:graphicImage library="images" name="logo1.png" /> </div>
+            </div>
+ 
+            <div class="span-15">
+                <div id="cabecera_titulo">
+                    <h2><h:outputText value="&emsp;Sistema Control 'Mi Tienda' " /></h2>
+                </div>
+            </div>
+
+            <div class="span-6 last">
+                <div id="cabecera_menu">
+                    <ul id="cabecera_menu_items"> <ui:include src="menu_cabecera.xhtml" /> </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="centro" class="span-24 last">
+
+            <div class="span-5">
+                <div id="centro_izquierda">
+                    <h:outputText value="Menu Usuario" /> <br/>
+                    <h:outputText value="Menu Sistema" />
+                </div>
+            </div>
+
+            <div id="content" class="span-19 last">
+                <div id="centro_contenido">
+                    <ui:insert name="Content">Content</ui:insert>
+                    <ui:insert name="subContent">Subcontenido</ui:insert>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="pie" class="span-24 last">
+            <div class="span-17">
+                <div id="pie_texto"> <h:outputText value="#{homeController.Footer()}"/> </div>
+            </div>
+
+            <div class="span-7 last">
+                <div id="pie_logo"> <h:graphicImage library="images" name="logojava2.png" /> </div>
+            </div>
+        </div>
+
+    </div>
+
+    </h:body>
+
+</html>

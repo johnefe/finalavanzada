@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompraEditDlg" widgetVar="CompraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCompraTitle}">
+            <h:form id="CompraEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{compraController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCompraLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{compraController.selected.id}" title="#{bundle.EditCompraTitle_id}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_fechaCompra}" for="fechaCompra" />
+                        <p:calendar id="fechaCompra" pattern="MM/dd/yyyy" value="#{compraController.selected.fechaCompra}" title="#{bundle.EditCompraTitle_fechaCompra}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditCompraLabel_idProveedor}" for="idProveedor" />
+                        <p:selectOneMenu id="idProveedor" value="#{compraController.selected.idProveedor}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_idProveedor}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"
+                                           var="idProveedorItem"
+                                           itemValue="#{idProveedorItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{compraController.update}" value="#{bundle.Save}" update="display,:CompraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CompraEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CompraEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

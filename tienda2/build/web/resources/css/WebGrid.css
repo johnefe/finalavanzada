@@ -1,0 +1,57 @@
+.webgrid {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    border-collapse: collapse;
+}
+ 
+.webgrid a {
+    color: #000;
+}
+ 
+.webgrid-header {
+    padding: 0px 5px;
+    text-align: center;
+    border-bottom: 2px solid #739ace;
+    height: 20px;
+    border-top: 2px solid #D6E8FF;
+    border-left: 2px solid #D6E8FF;
+    border-right: 2px solid #D6E8FF;
+}
+ 
+.webgrid-header th {
+    background-color: #eaf0ff;
+    border-right: 1px solid #ddd;
+}
+ 
+.webgrid-footer {
+    padding: 6px 5px;
+    text-align: center;
+    background-color: #e8eef4;
+    border-top: 2px solid #3966A2;
+    height: 25px;
+    border-bottom: 2px solid #D6E8FF;
+    border-left: 2px solid #D6E8FF;
+    border-right: 2px solid #D6E8FF;
+}
+ 
+.webgrid-alternating-row {
+    height: 22px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #d2d2d2;
+    border-left: 2px solid #D6E8FF;
+    border-right: 2px solid #D6E8FF;
+}
+ 
+.webgrid-row-style {
+    height: 22px;
+    border-bottom: 1px solid #d2d2d2;
+    border-left: 2px solid #D6E8FF;
+    border-right: 2px solid #D6E8FF;
+}
+ 
+.webgrid-selected-row {
+    background-color: Aqua;
+    font-weight: bold;
+}

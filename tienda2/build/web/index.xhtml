@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+       
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+         <title>Tienda Oline</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet library="css" name="blueprint/screen.css"/>
+        <h:outputStylesheet library="css" name="micss.css"/>
+        <h:outputStylesheet library="css" name="WebGrid.css"/>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'/>
+    </h:head>
+    <h:body>
+        <div class="cabecera" align="center">
+            <h:outputText class="titulo" value="MI TIENDA"/>
+        </div>
+       
+        
+        <h:form>
+            <p:megaMenu  style="margin-top:20px; font-size: 30px" class="menu" >
+                <p:submenu label="Ventas" style="font-size: 20px" icon="ui-icon-check">
+        <p:column style="font-size: 20px" >
+            <p:submenu label="Cliente">
+                <p:menuitem value="Registrar cliente" style="font-size: 20px" outcome="/cliente/List" />
+                </p:submenu>
+            <p:submenu label="Venta">
+                <p:menuitem value="Registrar venta"  style="font-size: 20px" outcome="/ventas/List" />
+                <p:menuitem value="realizar venta"  style="font-size: 20px" outcome="/ventaProducto/List"  />
+                </p:submenu>
+        </p:column>
+
+    </p:submenu>
+ 
+    <p:submenu label="Compras" style="font-size: 20px" icon="ui-icon-check">
+ 
+        <p:column>
+            <p:submenu label="Productos" style="font-size: 20px">
+                <p:menuitem value="Registrar nuevo producto" style="font-size: 20px" outcome="/producto/List" />
+                </p:submenu>
+            <p:submenu label="compra">
+                <p:menuitem value="Registrar nueva compra" style="font-size: 20px" outcome="/compra/List" />
+                <p:menuitem value="Realizar nueva compra" style="font-size: 20px" outcome="/productoCompra/List" />
+            </p:submenu>
+        </p:column>
+ 
+        </p:submenu>
+ 
+    <p:submenu label="Otros" icon="ui-icon-check">
+        <p:column>
+            <p:submenu label="Marca" style="font-size: 20px">
+                <p:menuitem style="font-size: 20px" value="Registrar marca de productos" outcome="/marca/List" />
+                
+            </p:submenu>
+            <p:submenu label="Proveedor">
+                <p:menuitem style="font-size: 20px" value="Registrar nuevo proveedor" outcome="/proveedor/List" />
+                
+            </p:submenu>
+        </p:column>
+ 
+        <p:column>
+            <p:submenu  style="font-size: 20px" label="Empresas proveedores" icon="ui-icon-circle">
+                <p:menuitem  style="font-size: 20px" value="Registrar empresa" outcome="/empresaProveedor/List"  />
+                
+            </p:submenu>
+            <p:submenu label="Categoria">
+                <p:menuitem value="Registrar categoria" outcome="/categoria/List" />
+                
+            </p:submenu>
+            
+        </p:column>
+    </p:submenu>
+ 
+                <p:submenu label="Reportes" icon="ui-icon-check">
+                    <p:column>
+                      <p:submenu label="Productos" style="font-size: 20px">
+                        <p:menuitem style="font-size: 20px" value="Generar reporte productos" outcome="/marca/List" />
+                
+                       </p:submenu>
+                       <p:submenu label="Ventas" style="font-size: 20px">
+                        <p:menuitem style="font-size: 20px" value="Generar reporte Ventas" outcome="/marca/List" />
+                
+                       </p:submenu>
+                        <p:submenu label="Marcas" style="font-size: 20px">
+                        <p:menuitem style="font-size: 20px" value="Generar reporte Marcas" outcome="/marca/List" />
+                
+                       </p:submenu>
+                    </p:column>
+                    
+                </p:submenu>
+ 
+    <p:menuitem style="font-size: 20px" value="Salir"  icon="ui-icon-close" />
+</p:megaMenu>
+            
+        </h:form>
+        <div class="span-24 last">
+            <h:form>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <h:commandLink action="#{menuventas.menu()}" > <h:graphicImage class="imagen" library="images" name="ventas_icono.png" /> </h:commandLink>
+                        </td>
+                        <td>
+                        <h:commandLink action="#{ventasController.create()}" > <h:graphicImage class="imagen2" library="images" name="compra.png" /> </h:commandLink>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </div>    
+       
+       
+      
+    </h:body>
+
+
+
+
+
+
+
+
+
+
+</html>
+

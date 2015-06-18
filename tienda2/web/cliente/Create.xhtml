@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Registrar Nuevo Cliente">
+            <h:form id="ClienteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+                       
+                        <p:inputText id="id" placeholder="Codigo" value="#{clienteController.selected.id}" title="#{bundle.CreateClienteTitle_id}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_id}"/><br></br>
+                        <p:inputText id="PNombre" placeholder="Primer Nombre" value="#{clienteController.selected.PNombre}" title="#{bundle.CreateClienteTitle_PNombre}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_PNombre}"/>
+                        <p:inputText id="SNombre" placeholder="Segundo Nombre" value="#{clienteController.selected.SNombre}" title="#{bundle.CreateClienteTitle_SNombre}" />
+                        <p:inputText id="PApellido" placeholder="Primer Apellido" value="#{clienteController.selected.PApellido}" title="#{bundle.CreateClienteTitle_PApellido}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_PApellido}"/>
+                        <p:inputText id="SApellido" placeholder="Segundo Apellido" value="#{clienteController.selected.SApellido}" title="#{bundle.CreateClienteTitle_SApellido}" />
+                        <p:inputText id="direccion" placeholder="Direccion residencial" value="#{clienteController.selected.direccion}" title="#{bundle.CreateClienteTitle_direccion}" />
+                        <p:inputText id="celular" placeholder="Celular" value="#{clienteController.selected.celular}" title="#{bundle.CreateClienteTitle_celular}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_celular}"/>
+                        <p:inputText id="telefono" placeholder="Telefono" value="#{clienteController.selected.telefono}" title="#{bundle.CreateClienteTitle_telefono}" />
+                        <p:inputText id="email" placeholder="correo electronico" value="#{clienteController.selected.email}" title="#{bundle.CreateClienteTitle_email}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteController.create}" value="Registrar" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(args,'ClienteCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="ClienteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+         <h:form id="VentasCreateForm">
+                <h:panelGroup id="display">
+          <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+                       
+                        <p:inputText id="id" placeholder="Codigo" value="#{clienteController.selected.id}" title="#{bundle.CreateClienteTitle_id}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_id}"/><br></br>
+                        <p:inputText id="PNombre" placeholder="Primer Nombre" value="#{clienteController.selected.PNombre}" title="#{bundle.CreateClienteTitle_PNombre}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_PNombre}"/>
+                        <p:inputText id="SNombre" placeholder="Segundo Nombre" value="#{clienteController.selected.SNombre}" title="#{bundle.CreateClienteTitle_SNombre}" />
+                        <p:inputText id="PApellido" placeholder="Primer Apellido" value="#{clienteController.selected.PApellido}" title="#{bundle.CreateClienteTitle_PApellido}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_PApellido}"/>
+                        <p:inputText id="SApellido" placeholder="Segundo Apellido" value="#{clienteController.selected.SApellido}" title="#{bundle.CreateClienteTitle_SApellido}" />
+                        <p:inputText id="direccion" placeholder="Direccion residencial" value="#{clienteController.selected.direccion}" title="#{bundle.CreateClienteTitle_direccion}" />
+                        <p:inputText id="celular" placeholder="Celular" value="#{clienteController.selected.celular}" title="#{bundle.CreateClienteTitle_celular}" required="true" requiredMessage="#{bundle.CreateClienteRequiredMessage_celular}"/>
+                        <p:inputText id="telefono" placeholder="Telefono" value="#{clienteController.selected.telefono}" title="#{bundle.CreateClienteTitle_telefono}" />
+                        <p:inputText id="email" placeholder="correo electronico" value="#{clienteController.selected.email}" title="#{bundle.CreateClienteTitle_email}" />
+                    </p:panelGrid>
+                </h:panelGroup>
+         </h:form> 
+    </ui:composition>
+</html>

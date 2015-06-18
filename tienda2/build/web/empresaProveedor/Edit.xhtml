@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpresaProveedorEditDlg" widgetVar="EmpresaProveedorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEmpresaProveedorTitle}">
+            <h:form id="EmpresaProveedorEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empresaProveedorController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEmpresaProveedorLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{empresaProveedorController.selected.id}" title="#{bundle.EditEmpresaProveedorTitle_id}" required="true" requiredMessage="#{bundle.EditEmpresaProveedorRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditEmpresaProveedorLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{empresaProveedorController.selected.nombre}" title="#{bundle.EditEmpresaProveedorTitle_nombre}" required="true" requiredMessage="#{bundle.EditEmpresaProveedorRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditEmpresaProveedorLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{empresaProveedorController.selected.direccion}" title="#{bundle.EditEmpresaProveedorTitle_direccion}" required="true" requiredMessage="#{bundle.EditEmpresaProveedorRequiredMessage_direccion}"/>
+                        <p:outputLabel value="#{bundle.EditEmpresaProveedorLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{empresaProveedorController.selected.telefono}" title="#{bundle.EditEmpresaProveedorTitle_telefono}" required="true" requiredMessage="#{bundle.EditEmpresaProveedorRequiredMessage_telefono}"/>
+                        <p:outputLabel value="#{bundle.EditEmpresaProveedorLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{empresaProveedorController.selected.email}" title="#{bundle.EditEmpresaProveedorTitle_email}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{empresaProveedorController.update}" value="#{bundle.Save}" update="display,:EmpresaProveedorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EmpresaProveedorEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmpresaProveedorEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
